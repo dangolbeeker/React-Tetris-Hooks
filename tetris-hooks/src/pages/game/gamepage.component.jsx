@@ -49,6 +49,7 @@ export const GamePage = () => {
         }
     }
 
+    console.log(player.tetromino)
 
     return (
         <div className="game-page" onKeyDown={e => move(e)}>
@@ -61,7 +62,7 @@ export const GamePage = () => {
                             <DisplayField text='Score :' />
                             <DisplayField text='Rows :' />
                             <DisplayField text='Level :' />
-                            <ActionButton onClick={startGame} />
+                            <ActionButton callback={startGame} />
                         </div>
                     )
                 }
