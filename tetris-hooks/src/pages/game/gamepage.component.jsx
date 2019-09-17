@@ -7,13 +7,12 @@ import { usePlayground } from '../../hooks/usePlayground.hook'
 import { usePlayer } from '../../hooks/usePlayer.hook'
 
 import './gamepage.styles.scss'
-import { createpg } from  '../../helpers/playgroundHelper';
+import { createpg } from '../../helpers/playgroundHelper';
 
 export const GamePage = () => {
 
     const [dropTime, setDropTime] = useState(null);
     const [gameOver, setGameOver] = useState(false);
-
     const [player, updatePlayerPos, resetPlayer] = usePlayer();
     const [pg, setPg] = usePlayground(player, resetPlayer);
 
@@ -24,7 +23,7 @@ export const GamePage = () => {
     }
 
     const movePlayer = dir => {
-        updatePlayerPos({ x: dir, y: 0, collided: false })
+        updatePlayerPos({ x: dir, y: 0 })
     }
 
     const drop = () => {
@@ -43,16 +42,17 @@ export const GamePage = () => {
                     break;
                 case 39:
                     movePlayer(1)
+                    break;
                 case 40:
                     dropPlayer();
+                    break;
             }
         }
     }
-
     console.log(player.tetromino)
 
     return (
-        <div className="game-page" onKeyDown={e => move(e)}>
+        <div className="game-page" role='button' tabIndex='0' onKeyDown={e => move(e)}>
             <Playground pg={pg} />
             <div className='infonav'>
                 {gameOver ? (
